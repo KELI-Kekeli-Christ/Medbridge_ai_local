@@ -1,0 +1,31 @@
+asgiref==3.11.1
+Django==6.0.4
+django-filter==25.2
+djangorestframework==3.17.1
+djangorestframework-simplejwt==5.3.1
+django-cors-headers==4.3.1
+Markdown==3.10.2
+sqlparse==0.5.3
+
+# AI / ML
+# torch + torchaudio doivent avoir la même version et le même build CUDA
+# Installation : pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+torch==2.8.0
+torchaudio==2.8.0
+# transformers<5.0 requis : fairseq2 0.6 impose huggingface_hub~=0.32 (<1.0)
+transformers>=4.40.0,<5.0
+huggingface_hub~=0.32
+openai-whisper>=20231117
+sentencepiece>=0.2.0
+langdetect>=1.0.9
+
+# Audio
+pydub>=0.25.1
+soundfile>=0.12.1
+
+# PDF generation
+reportlab>=4.0.0
+
+# Utils
+python-dotenv>=1.0.0
+Pillow>=10.0.0

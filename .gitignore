@@ -1,0 +1,44 @@
+# --- Python environments ---
+env/
+venv/
+.venv/
+**/env/
+**/venv/
+
+# --- Python artifacts ---
+__pycache__/
+*.py[cod]
+*.so
+
+# --- Django / local data ---
+*.sqlite3
+media/
+
+# --- Node / Next.js ---
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+*.tsbuildinfo
+
+# --- Logs / temp ---
+*.log
+tmp/
+temp/
+*.wav
+
+# --- AI models / checkpoints (too large for git) ---
+backend/models/*
+!backend/models/.gitkeep
+
+# --- Large binary formats ---
+*.pt
+*.pth
+*.bin
+*.onnx
+*.ckpt
+*.safetensors
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
