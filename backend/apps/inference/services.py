@@ -19,6 +19,23 @@ NLLB_LANGUAGE_MAP = {
     'arz': 'arz_Arab',
 }
 
+LANGUAGE_ALIASES = {
+    'french': 'fr',
+    'francais': 'fr',
+    'français': 'fr',
+    'english': 'en',
+    'ewe': 'ee',
+    'arabic': 'ar',
+}
+
+
+def _normalize_language_code(language: str) -> str:
+    """Normalise les variantes utilisateur/API vers les codes internes."""
+    if not language:
+        return language
+    normalized = str(language).strip().lower()
+    return LANGUAGE_ALIASES.get(normalized, normalized)
+
 
 def _get_model_device(model):
     """Retourne le device PyTorch du modèle, ou CPU si indéterminé."""
@@ -50,6 +67,8 @@ def _run_nllb_translation(text: str, source_language: str, target_language: str)
 
     import torch
 
+    source_language = _normalize_language_code(source_language)
+    target_language = _normalize_language_code(target_language)
     pair_key = f"{source_language}_{target_language}"
     logger.info(f"[Translation] Démarrage avec modèle: nllb ({pair_key}), texte: {text[:50]}...")
 
@@ -334,6 +353,9 @@ def run_translation(text: str, mode: str = 'medical_to_patient',
 
     start = time.time()
     fallback_used = False
+
+    source_language = _normalize_language_code(source_language)
+    target_language = _normalize_language_code(target_language)
 
     warning = None
     warning_detail = None

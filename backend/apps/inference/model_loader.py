@@ -234,10 +234,21 @@ def get_nllb_model(pair_key: str = 'generic'):
     # Mapping paire → clé dans AI_MODELS settings
     local_model_map = {
         'ee_fr': 'nllb_ewe_fr',
+        'fr_ee': 'nllb_ewe_fr',
         'ar_fr': 'nllb_ar_fr',
     }
 
     settings_key = local_model_map.get(pair_key)
+    if not settings_key and '_' in pair_key:
+        # Fallback automatique pair inverse (ex: fr_ee -> ee_fr)
+        src, tgt = pair_key.split('_', 1)
+        reverse_pair_key = f"{tgt}_{src}"
+        settings_key = local_model_map.get(reverse_pair_key)
+        if settings_key:
+            logger.info(
+                f"Paire NLLB '{pair_key}' non mappée explicitement, "
+                f"utilisation du checkpoint de '{reverse_pair_key}'."
+            )
     if settings_key:
         config = settings.AI_MODELS.get(settings_key)
         if config and os.path.isdir(config['path']):

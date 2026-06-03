@@ -113,6 +113,16 @@ TRANSLATION_MODELS = {
             'priority': 1,
         },
     ],
+    'fr_ee': [
+        {
+            'id': 'nllb_fr_ee',
+            'name': 'NLLB (FR → Ewe)',
+            'type': ModelType.NLLB,
+            'path': 'models/NLLB_ewe_francais/final_model',
+            'description': 'Traduction Français → Ewe avec NLLB local',
+            'priority': 1,
+        },
+    ],
     'ar_fr': [
         {
             'id': 'nllb_ar_fr',
